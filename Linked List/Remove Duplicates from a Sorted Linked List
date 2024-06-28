@@ -1,0 +1,27 @@
+/*
+class Node
+    {
+        int data;
+        Node next;
+        Node(int d) {data = d; next = null; }
+    }
+*/
+
+class GfG
+{
+    Node removeDuplicates(Node head)
+    {
+        Node prev=head,temp=head.next;
+        while(temp!=null){
+            if(prev.data==temp.data){
+                prev.next=temp.next;
+                temp=temp.next;
+            }
+            else{
+                prev=prev.next;
+                temp=temp.next;
+            }
+        }
+        return head;
+    }
+}
