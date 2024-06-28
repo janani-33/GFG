@@ -1,0 +1,26 @@
+/* A Binary Tree node
+class Node {
+    int data;
+    Node left, right;
+   Node(int item)    {
+        data = item;
+        left = right = null;
+    }
+} */
+
+class Tree
+{
+    ArrayList<Integer> postOrder(Node root)
+    {
+       ArrayList<Integer> list=new ArrayList<>();
+       calpostorder(list,root);
+       return list;
+    }
+    void calpostorder(ArrayList list,Node root){
+        if(root==null)
+        return;
+        calpostorder(list,root.left);
+        calpostorder(list,root.right);
+        list.add(root.data);
+    }
+}
