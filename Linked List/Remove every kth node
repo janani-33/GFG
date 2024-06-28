@@ -1,0 +1,33 @@
+/* Link list Node
+class Node
+{
+	Node next;
+	int data;
+	Node(int d)
+	{
+		data = d;
+		next = null;
+	}
+}*/
+
+class Solution
+{
+    Node delete(Node head, int k)
+    {
+        if(k==1)
+        return null;
+        Node temp=head;
+        int count=0;
+        while(temp!=null){
+            count++;
+            if(count==k-1){
+                if(temp.next==null)
+                break;
+                temp.next=temp.next.next;
+                count=0;
+            }
+            temp=temp.next;
+        }
+        return head;
+    }
+}
