@@ -1,0 +1,27 @@
+/*
+class Node
+{
+    int data;
+    Node next;
+}
+*/
+
+class Solution
+{
+    //Function to remove a loop in the linked list.
+    public static void removeLoop(Node head){
+        // code here
+        // remove the loop without losing any nodes
+        Node temp=head,prev=null;
+        Set<Node> h=new HashSet<>();
+        while(temp!=null){
+            if(h.contains(temp)){
+                prev.next=null;
+                return;
+            }
+            h.add(temp);
+            prev=temp;
+            temp=temp.next;
+        }
+    }
+}
