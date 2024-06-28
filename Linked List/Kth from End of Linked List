@@ -1,0 +1,30 @@
+/* Structure of node
+class Node
+{
+    int data;
+    Node next;
+    Node(int d) {data = d; next = null; }
+} */
+
+class Solution {
+    int getKthFromLast(Node head, int k) {
+        // Your code here
+        Node temp=head;
+        int c=0;
+        while(temp!=null){
+            temp=temp.next;
+            c++;
+        }
+        int pos=c-k;
+        if(pos<0)
+        return -1;
+        if(pos==0)
+        return head.data;
+        temp=head;
+        while(pos>0){
+            temp=temp.next;
+            pos--;
+        }
+        return temp.data;
+    }
+}
