@@ -1,0 +1,28 @@
+class Solution {
+    // Function to detect cycle in a directed graph.
+    public boolean isCyclic(int V, ArrayList<ArrayList<Integer>> adj) {
+        // code here
+        boolean visited[]=new boolean[V];
+        boolean rec[]=new boolean[V];
+        for(int i=0;i<V;i++){
+            if(checkcyclic(i,visited,rec,adj))
+            return true;
+        }
+        return false;
+    }
+    public boolean checkcyclic(int i,boolean[] visited,boolean[] rec,ArrayList<ArrayList<Integer>> adj){
+        if(rec[i])
+        return true;
+        if(visited[i])
+        return false;
+        rec[i]=true;
+        visited[i]=true;
+        ArrayList<Integer> list =adj.get(i);
+        for(int c:list){
+            if(checkcyclic(c,visited,rec,adj))
+            return true;
+        }
+        rec[i]=false;
+        return false;
+    }
+}
