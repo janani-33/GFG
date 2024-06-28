@@ -1,0 +1,24 @@
+/* A Binary Tree node
+class Node {
+    int data;
+    Node left, right;
+   Node(int item)    {
+        data = item;
+        left = right = null;
+    }
+} */
+
+class Solution {
+    ArrayList<Integer> inOrder(Node root) {
+        ArrayList<Integer> list=new ArrayList<>();
+        calcinorder(list,root);
+        return list;
+    }
+    void calcinorder(ArrayList list,Node root){
+        if(root==null)
+        return;
+        calcinorder(list,root.left);
+        list.add(root.data);
+        calcinorder(list,root.right);
+    }
+}
