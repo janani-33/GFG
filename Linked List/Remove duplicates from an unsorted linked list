@@ -1,0 +1,32 @@
+/* The structure of linked list is the following
+class Node
+{
+    int data;
+    Node next;
+    Node(int d) {
+        data = d; 
+        next = null;
+    }
+}
+*/
+
+class Solution
+{
+    public Node removeDuplicates(Node head) 
+    {
+        Node temp=head,prev=null;
+        Set<Integer> set=new HashSet<>();
+        while(temp!=null){
+            if(set.contains(temp.data)){
+                prev.next=temp.next;
+                temp=temp.next;
+            }
+            else{
+                set.add(temp.data);
+                prev=temp;
+                temp=temp.next;
+            }
+        }
+        return head;
+    }
+}
