@@ -1,0 +1,25 @@
+// class Node{
+//     int data;
+//     Node left,right;
+//     Node(int d){
+//         data=d;
+//         left=right=null;
+//     }
+// }
+
+class BinaryTree
+{
+    static ArrayList<Integer> preorder(Node root)
+    {
+        ArrayList<Integer> list=new ArrayList<>();
+        findpreorder(list,root);
+        return list;
+    }
+    static void findpreorder(ArrayList list,Node root){
+        if(root==null)
+        return;
+        list.add(root.data);
+        findpreorder(list,root.left);
+        findpreorder(list,root.right);
+    }
+}
