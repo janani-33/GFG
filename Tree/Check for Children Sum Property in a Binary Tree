@@ -1,0 +1,39 @@
+/*Complete the function below
+Node is as follows:
+class Node{
+	int data;
+	Node left,right;
+	Node(int key)
+	{
+	    data = key;
+	    left = right = null;
+	}
+}
+*/
+class Solution
+{
+    public static int isSumProperty(Node root)
+    {
+        if(root==null)
+        return 0;
+        Queue<Node> q=new LinkedList<>();
+        q.add(root);
+        while(!q.isEmpty()){
+            Node level=q.remove();
+            int sum=0,count=0;
+            if(level.left!=null){
+                q.add(level.left);
+                sum+=level.left.data;
+                count++;
+            }
+            if(level.right!=null){
+                q.add(level.right);
+                sum+=level.right.data;
+                count++;
+            }
+            if(count!=0 && sum!=level.data)
+            return 0;
+        }
+        return 1;
+    }
+}
