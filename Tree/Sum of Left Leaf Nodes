@@ -1,0 +1,32 @@
+// class Node  
+// { 
+//     int data; 
+//     Node left, right; 
+//     public Node(int d)  
+//     { 
+//         data = d; 
+//         left = right = null; 
+//     } 
+// }
+
+class Solution{
+    public int leftLeavesSum(Node root) 
+    {
+        Queue<Node> q=new LinkedList<>();
+        if(root==null)
+        return 0;
+        q.add(root);
+        int sum=0;
+        while(!q.isEmpty()){
+            Node level=q.remove();
+            if(level.left!=null){
+                q.add(level.left);
+                if(level.left.left==null && level.left.right==null)
+                sum+=level.left.data;
+            }
+            if(level.right!=null)
+            q.add(level.right);
+        }
+        return sum;
+    }
+}
