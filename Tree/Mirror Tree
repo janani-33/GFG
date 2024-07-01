@@ -1,0 +1,30 @@
+/* A Binary Tree node
+class Node
+{
+    int data;
+    Node left, right;
+   Node(int item)
+   {
+        data = item;
+        left = right = null;
+    }
+} */
+
+class Solution {
+    void mirror(Node node) {
+        if(node==null)
+        return;
+        Queue<Node> q=new LinkedList<>();
+        q.add(node);
+        while(!q.isEmpty()){
+            Node level=q.remove();
+            if(level.left!=null)
+            q.add(level.left);
+            if(level.right!=null)
+            q.add(level.right);
+            Node temp=level.left;
+            level.left=level.right;
+            level.right=temp;
+        }
+    }
+}
