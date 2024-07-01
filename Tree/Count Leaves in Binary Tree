@@ -1,0 +1,33 @@
+/* A Binary Tree node
+class Node
+{
+    int data;
+    Node left, right;
+}*/
+
+class Tree
+{
+    int countLeaves(Node node) 
+    {
+        if(node==null)
+        return 0;
+        Queue<Node> q=new LinkedList<>();
+        q.add(node);
+        int leaf=0;
+        while(!q.isEmpty()){
+            Node level=q.remove();
+            int c=0;
+            if(level.left!=null){
+                q.add(level.left);
+                c++;
+            }
+            if(level.right!=null){
+                q.add(level.right);
+                c++;
+            }
+            if(c==0)
+            leaf++;
+        }
+        return leaf;
+    }
+}
