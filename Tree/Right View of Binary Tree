@@ -1,0 +1,34 @@
+/*Complete The Function Provided
+Given Below is The Node Of Tree
+class Node
+{
+    int data;
+    Node left, right;
+    public Node(int data)
+    {
+        this.data = data;
+         left = right = null;
+    }
+}*/
+class Solution{
+    ArrayList<Integer> rightView(Node node) {
+        ArrayList<Integer> list=new ArrayList<>();
+        if(node==null)
+        return list;
+        Queue<Node> q=new LinkedList<>();
+        q.add(node);
+        while(!q.isEmpty()){
+            int s=q.size();
+            for(int i=0;i<s;i++){
+                Node level=q.remove();
+                if(i==s-1)
+                list.add(level.data);
+                if(level.left!=null)
+                q.add(level.left);
+                if(level.right!=null)
+                q.add(level.right);
+            }
+        }
+        return list;
+    }
+}
