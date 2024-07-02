@@ -1,0 +1,11 @@
+class Solution {
+    static int findPosition(int N) {
+        if(Integer.bitCount(N)!=1)
+        return -1;
+        else{
+            String s=Integer.toBinaryString(N);
+            int n=s.length()-s.indexOf("1");
+            return n;
+        }
+    }
+};
