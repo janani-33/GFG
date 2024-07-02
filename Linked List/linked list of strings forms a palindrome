@@ -1,0 +1,13 @@
+class Solution {
+    public boolean compute(Node root) {
+        Node temp=root;
+        String s="";
+        while(temp!=null){
+            s+=temp.data;
+            temp=temp.next;
+        }
+        StringBuffer sb=new StringBuffer(s);
+        String rev=new String(sb.reverse());
+        return s.equals(rev);
+    }
+}
