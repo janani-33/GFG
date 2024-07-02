@@ -1,0 +1,8 @@
+class Solution{
+    static int isBitSet(int N){
+        if(N>0 && (N&(N+1))==0)
+        return 1;
+        else
+        return 0;
+    }
+}
