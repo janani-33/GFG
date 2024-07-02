@@ -1,0 +1,60 @@
+/* class Node{
+    int data;
+    Node left,right;
+    Node(int d)
+    {
+        data=d;
+        left=null;
+        right=null;
+    }
+}*/
+
+class Solution {
+    public static boolean isSubtree(Node T, Node S) {
+        if(S==null)
+        return true;
+        Queue<Node> q=new LinkedList<>();
+        q.add(T);
+        Node head=null;
+        Queue<Node> eq=new LinkedList<>();
+        while(!q.isEmpty()){
+            Node level=q.remove();
+            if(level.data==S.data)
+            eq.add(level);
+            if(level.left!=null)
+            q.add(level.left);
+            if(level.right!=null)
+            q.add(level.right);
+        }
+        q.clear();
+        if(eq.size()==0)
+        return false;
+        while(!eq.isEmpty()){
+            head=eq.remove();
+            q.add(head);
+            Queue<Node> q2=new LinkedList<>();
+            q2.add(S);
+            while(!q.isEmpty() || !q2.isEmpty()){
+                if(q.size()!=q2.size())
+                break;
+                Node l1=q.remove();
+                Node l2=q2.remove();
+                if(l1.data!=l2.data)
+                break;
+                if(l1.left!=null)
+                q.add(l1.left);
+                if(l2.left!=null)
+                q2.add(l2.left);
+                if(l1.right!=null)
+                q.add(l1.right);
+                if(l2.right!=null)
+                q2.add(l2.right);
+            }
+            if(q.isEmpty()&&q2.isEmpty())
+            return true;
+            q.clear();
+            q2.clear();
+        }
+        return false;
+    }
+}
