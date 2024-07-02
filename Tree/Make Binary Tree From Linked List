@@ -1,0 +1,22 @@
+class Solution {
+    public Tree convert(Node head, Tree node) {
+        if(head==null)
+        return node;
+        Queue<Tree> q=new LinkedList<>();
+        node=new Tree(head.data);
+        head=head.next;
+        q.add(node);
+        while(head!=null){
+            Tree curr=q.remove();
+            curr.left=new Tree(head.data);
+            q.add(curr.left);
+            head=head.next;
+            if(head!=null){
+                curr.right=new Tree(head.data);
+                q.add(curr.right);
+                head=head.next;
+            }
+        }
+        return node;
+    }
+}
