@@ -1,0 +1,34 @@
+class Solution {
+    public Node removeAllDuplicates(Node head) {
+        if(head==null || head.next==null)
+        return head;
+        Node prev=head,temp=head.next;
+        while(head.data==temp.data){
+            while(temp!=null && head.data==temp.data)
+            temp=temp.next;
+            head=temp;
+            if(temp==null || temp.next==null)
+            return head;
+            else
+            temp=temp.next;
+        }
+        prev=head;
+        temp=head.next;
+        while(temp!=null && temp.next!=null){
+            boolean flag=false;
+            while(temp.next!=null && temp.data==temp.next.data){
+                temp.next=temp.next.next;
+                flag=true;
+            }
+            if(flag){
+                prev.next=temp.next;
+                temp=temp.next;
+            }
+            else{
+                prev=temp;
+                temp=temp.next;
+            }
+        }
+        return head;
+    }
+}
