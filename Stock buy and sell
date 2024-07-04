@@ -1,0 +1,32 @@
+class Solution{
+    ArrayList<ArrayList<Integer> > stockBuySell(int A[], int n) {
+        ArrayList<ArrayList<Integer>> list=new ArrayList<>();
+        int buy=0;
+        while(buy<n-1){
+            int sell=buy+1;
+            int dif=0;
+            while(sell<n && A[sell]>A[buy]){
+                if(dif<A[sell]-A[buy]){
+                    dif=A[sell]-A[buy];
+                    sell++;
+                }
+                else
+                break;
+            }
+            if(sell==buy+1){
+                buy++;
+                sell++;
+            }
+            else{
+                ArrayList<Integer> sub=new ArrayList();
+                sub.add(buy);
+                sub.add(sell-1);
+                list.add(sub);
+                buy=sell-1;
+            }
+            if(sell==n)
+            break;
+        }
+        return list;
+    }
+}
