@@ -1,0 +1,33 @@
+/*
+class Item {
+    int value, weight;
+    Item(int x, int y){
+        this.value = x;
+        this.weight = y;
+    }
+}
+*/
+class Solution {
+    double fractionalKnapsack(int w, Item arr[], int n) {
+        double ratio[][]=new double[n][2];
+        for(int i=0;i<n;i++){
+            ratio[i][0]=i;
+            ratio[i][1]=arr[i].value/(double)arr[i].weight;
+        }
+        Arrays.sort(ratio,Comparator.comparingDouble(o->o[1]));
+        int capacity=w;
+        double val=0.0;
+        for(int i=n-1;i>=0;i--){
+            int index=(int)ratio[i][0];
+            if(capacity>=arr[index].weight){
+                val+=arr[index].value;
+                capacity-=arr[index].weight;
+            }
+            else{
+                val+=(ratio[i][1]*capacity);
+                break;
+            }
+        }
+        return val;
+    }
+}
