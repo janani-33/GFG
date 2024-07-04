@@ -1,0 +1,27 @@
+class Solution {
+    public List<String> find_permutation(String S) {
+        List<String> list=new ArrayList<>();
+        permute(0,S,list);
+        Collections.sort(list);
+        return list;
+    }
+    public void permute(int p,String s,List<String> list){
+        if(p==s.length()){
+            if(!list.contains(s))
+            list.add(s);
+        }
+        for(int i=p;i<s.length();i++){
+            char a[]=s.toCharArray();
+            char temp=a[p];
+            a[p]=a[i];
+            a[i]=temp;
+            s=String.valueOf(a);
+            permute(p+1,s,list);
+            a=s.toCharArray();
+            temp=a[p];
+            a[p]=a[i];
+            a[i]=temp;
+            s=String.valueOf(a);
+        }
+    }
+}
