@@ -1,0 +1,29 @@
+class Solution
+{  
+    public ArrayList<String> permutation(String S)
+    {
+        ArrayList<String> list=new ArrayList<>();
+        permute(0,S,list);
+        Collections.sort(list);
+        return list;
+    }
+    public void permute(int index,String s,ArrayList<String> list){
+        if(index==s.length()){
+            list.add(s.substring(0,index));
+            return;
+        }
+        for(int i=index;i<s.length();i++){
+            char c[]=s.toCharArray();
+            char t=c[index];
+            c[index]=c[i];
+            c[i]=t;
+            s=String.valueOf(c);
+            permute(index+1,s,list);
+            c=s.toCharArray();
+            t=c[index];
+            c[index]=c[i];
+            c[i]=t;
+            s=String.valueOf(c);
+        }
+    }
+}
