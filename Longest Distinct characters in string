@@ -1,0 +1,17 @@
+class Solution{
+    static int longestSubstrDistinctChars(String S){
+        String str="";
+        int max=0;
+        for(int i=0;i<S.length();i++){
+            int index=str.indexOf(S.substring(i,i+1));
+            if(index==-1)
+            str+=S.charAt(i);
+            else
+            str=str.substring(index+1,str.length())+S.charAt(i);
+            if(str.length()>max)
+            max=str.length();
+            
+        }
+        return max;
+    }
+}
