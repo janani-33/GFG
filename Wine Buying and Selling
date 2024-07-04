@@ -1,0 +1,29 @@
+class Solution {
+    long wineSelling(int Arr[],int N){
+        int buy=0,sell=0;
+        long res=0;
+        while(buy<N && sell<N){
+            while(Arr[buy]<=0){
+                buy++;
+                if(buy==N)
+                return res;
+            }
+            while(Arr[sell]>=0){
+                sell++;
+                if(sell==N)
+                return res;
+            }
+            if(Math.abs(Arr[buy])>=Math.abs(Arr[sell])){
+                res+=Math.abs(buy-sell)*(Math.abs(Arr[sell]));
+                Arr[buy]=Arr[buy]+Arr[sell];
+                Arr[sell]=0;
+            }
+            else{
+                res+=Math.abs(buy-sell)*Arr[buy];
+                Arr[sell]=Arr[buy]+Arr[sell];
+                Arr[buy]=0;
+            }
+        }
+        return res;
+    }
+}
