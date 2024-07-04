@@ -1,0 +1,39 @@
+/* A Binary Tree node
+class Node
+{
+    int data;
+    Node left, right;
+
+    Node(int item)
+    {
+        data = item;
+        left = right = null;
+    }
+}
+ */
+class Solution {
+    int c=0;
+    int dupSub(Node root) {
+        HashMap<String,Integer> map=new HashMap<>();
+        duplicate(root,map);
+        if(c!=0)
+        return 1;
+        else
+        return 0;
+    }
+    public String duplicate(Node node,HashMap<String,Integer> map){
+        if(node==null)
+        return "#";
+        String str=node.data+","+duplicate(node.left,map)+","+duplicate(node.right,map);
+        if(map.containsKey(str))
+        map.put(str,map.get(str)+1);
+        else
+        map.put(str,1);
+        if(map.get(str)==2){
+            String temp[]=str.split("\\,");
+            if(temp.length>3)
+            c++;
+        }
+        return str;
+    }
+}
