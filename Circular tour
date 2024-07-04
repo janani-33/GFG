@@ -1,0 +1,20 @@
+class Solution
+{
+    int tour(int petrol[], int distance[])
+    {
+        int petrolcount=0,s1=0,s2=0,start=0,n=petrol.length;
+        for(int i=0;i<n;i++){
+            s1+=petrol[i];
+            s2+=distance[i];
+            petrolcount+=petrol[i]-distance[i];
+            if(petrolcount<0){
+                start=i+1;
+                petrolcount=0;
+            }
+        }
+        if(s1<s2)
+        return -1;
+        else
+        return start;
+    }
+}
