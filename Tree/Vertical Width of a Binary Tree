@@ -1,0 +1,29 @@
+class Pair{
+    int index;
+    Node node;
+    public Pair(int index,Node node){
+        this.index=index;
+        this.node=node;
+    }
+}
+class Solution {
+    public int verticalWidth(Node root) {
+        if(root==null)
+        return 0;
+        Queue<Pair> q=new LinkedList<>();
+        q.add(new Pair(0,root));
+        int max=0,min=0;
+        while(!q.isEmpty()){
+            Pair temp=q.remove();
+            if(temp.node.left!=null){
+                q.add(new Pair(temp.index-1,temp.node.left));
+                min=Math.min(min,temp.index-1);
+            }
+            if(temp.node.right!=null){
+                q.add(new Pair(temp.index+1,temp.node.right));
+                max=Math.max(max,temp.index+1);
+            }
+        }
+        return max+Math.abs(min)+1;
+    }
+}
