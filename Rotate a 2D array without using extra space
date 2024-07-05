@@ -1,0 +1,14 @@
+class Solution {
+    void rotateMatrix(int arr[][], int n) {
+        int m=arr[0].length;
+        for(int i=0;i<n/2;i++){
+            for(int j=i;j<m-i-1;j++){
+                int temp=arr[n-j-1][i];
+                arr[n-j-1][i]=arr[i][j];
+                arr[i][j]=arr[j][m-i-1];
+                arr[j][m-i-1]=arr[n-i-1][n-j-1];
+                arr[n-i-1][n-j-1]=temp;
+            }
+        }
+    }
+}
