@@ -1,0 +1,26 @@
+class Solution {
+    static int numProvinces(ArrayList<ArrayList<Integer>> adj, int V) {
+        int n=adj.size();
+        boolean visited[]=new boolean[n];
+        int c=0;
+        for(int i=0;i<n;i++){
+            if(!visited[i]){
+                c++;
+                checkprovince(i,n,adj,visited);
+            }
+        }
+        return c;
+    }
+    static void checkprovince(int i,int n,ArrayList<ArrayList<Integer>> adj,boolean[] visited){
+        Queue<Integer> q=new LinkedList<>();
+        q.add(i);
+        while(q.size()>0){
+            int val=q.remove();
+            visited[val]=true;
+            for(int j=0;j<n;j++){
+                if(adj.get(val).get(j)==1 && !visited[j])
+                q.add(j);
+            }
+        }
+    }
+}
