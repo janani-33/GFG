@@ -1,0 +1,17 @@
+class Solution {
+    static int isAmicable(int A , int B) {
+        int sum1=0,sum2=0;
+        for(int i=1;i<A;i++){
+            if(A%i==0)
+            sum1+=i;
+        }
+        for(int i=1;i<B;i++){
+            if(B%i==0)
+            sum2+=i;
+        }
+        if(sum1==B && sum2==A)
+        return 1;
+        else
+        return 0;
+    }
+}
