@@ -1,0 +1,34 @@
+/*
+// A Binary Tree node
+class Node{
+    int data;
+    Node left;
+    Node right;
+    Node(int data){
+        this.data = data;
+        left=null;
+        right=null;
+    }
+}
+*/
+class Solution {
+    int sum=0;
+    boolean flag=false;
+    boolean hasPathSum(Node root, int target) {
+        pathsum(root,target);
+        return flag;
+    }
+    void pathsum(Node node,int t){
+        if(node.left==null && node.right==null){
+            if(node.data+sum==t)
+            flag=true;
+            return;
+        }
+        sum+=node.data;
+        if(node.left!=null)
+        pathsum(node.left,t);
+        if(node.right!=null)
+        pathsum(node.right,t);
+        sum-=node.data;
+    }
+}
