@@ -1,0 +1,28 @@
+class Solution {
+    public String smallestNumber(int s, int d) {
+        if(s>9*d)
+        return ""+-1;
+        if(d==1)
+        return ""+s;
+        String str="";
+        int i=0;
+        while(i<d && s>0){
+            if(s>9){
+                str="9"+str;
+                s-=9;
+            }
+            else{
+                if(i<d-1){
+                    str=(s-1)+str;
+                    s=1;
+                }
+                else{
+                    str=s+str;
+                    s=0;
+                }
+            }
+            i++;
+        }
+        return str;
+    }
+}
