@@ -1,0 +1,12 @@
+class Solution {
+    public String printString(String s, char ch, int count) {
+        for(int i=0;i<count;i++){
+            int index=s.indexOf(ch);
+            if(index==-1 || index==s.length()-1)
+            return "";
+            else
+            s=s.substring(index+1,s.length());
+        }
+        return s;
+    }
+}
