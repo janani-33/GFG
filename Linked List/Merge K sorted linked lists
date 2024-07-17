@@ -1,0 +1,35 @@
+/*class Node
+{
+    int data;
+    Node next;
+    Node(int key)
+    {
+        data = key;
+        next = null;
+    }
+}
+*/
+// a is an array of Nodes of the heads of linked lists
+// and N is size of array a
+
+class Solution
+{
+    Node mergeKList(Node[]arr,int K)
+    {
+        PriorityQueue<Integer> pq=new PriorityQueue<>();
+        for(int i=0;i<K;i++){
+            Node temp=arr[i];
+            while(temp!=null){
+                pq.add(temp.data);
+                temp=temp.next;
+            }
+        }
+        Node t=new Node(-1);
+        Node head=t;
+        while(!pq.isEmpty()){
+            t.next=new Node(pq.poll());
+            t=t.next;
+        }
+        return head.next;
+    }
+}
