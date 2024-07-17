@@ -1,0 +1,32 @@
+class Solution {
+    public static void reachdest(int[][] m,int n,int cx,int cy,boolean[][] v,ArrayList<String> res,String str){
+        int x[]={-1,1,0,0};
+        int y[]={0,0,-1,1};
+        char c[]={'U','D','L','R'};
+        if(cx==n-1 && cy==n-1){
+            res.add(str);
+            return;
+        }
+        for(int i=0;i<4;i++){
+            int dx=cx+x[i];
+            int dy=cy+y[i];
+            if(dx>=0 && dx<n && dy>=0 && dy<n && !v[dx][dy] && m[dx][dy]==1){
+                v[dx][dy]=true;
+                str=str+c[i];
+                reachdest(m,n,dx,dy,v,res,str);
+                str=str.substring(0,str.length()-1);
+                v[dx][dy]=false;
+            }
+        }
+    }
+    public static ArrayList<String> findPath(int[][] m, int n) {
+        ArrayList<String> res=new ArrayList<>();
+        if(m[0][0]==0 || m[n-1][n-1]==0)
+        return res;
+        boolean[][] v=new boolean[n][n];
+        v[0][0]=true;
+        reachdest(m,n,0,0,v,res,"");
+        Collections.sort(res);
+        return res;
+    }
+}
