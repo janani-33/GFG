@@ -1,0 +1,28 @@
+class Solution {
+    int[] constructLowerArray(int[] arr) {
+        int n=arr.length;
+        int res[]=new int[n];
+        ArrayList<Integer> list=new ArrayList<>();
+        for(int i=n-1;i>=0;i--){
+            if(list.isEmpty() || arr[i]>list.get(list.size()-1)){
+                res[i]=list.size();
+                list.add(arr[i]);
+            }
+            else{
+                int l=0,r=list.size()-1,index=-1;
+                while(l<=r){
+                    int mid=(l+r)/2;
+                    if(list.get(mid)>=arr[i])
+                    r=mid-1;
+                    else{
+                        index=mid;
+                        l=mid+1;
+                    }
+                }
+                res[i]=index+1;
+                list.add(index+1,arr[i]);
+            }
+        }
+        return res;
+    }
+}
