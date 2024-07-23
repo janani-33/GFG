@@ -1,0 +1,29 @@
+class Solution {
+    public static int floor(Node root, int x) {
+        if(root==null)
+        return -1;
+        int res=-1;
+        Node temp=root;
+        while(true){
+            if(temp.data==x){
+                res=temp.data;
+                break;
+            }
+            else if(x>temp.data){
+                res=temp.data;
+                if(temp.right!=null)
+                temp=temp.right;
+                else
+                break;
+            }
+            else{
+                if(temp.left!=null)
+                temp=temp.left;
+                else
+                break;
+            }
+        }
+        return res;
+    }
+
+}
