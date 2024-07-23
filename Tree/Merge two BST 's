@@ -1,0 +1,44 @@
+/*
+class Node
+{
+    int data;
+    Node left, right;
+
+    public Node(int d)
+    {
+        data = d;
+        left = right = null;
+    }
+}
+
+*/
+class Solution {
+    public List<Integer> merge(Node root1, Node root2) {
+        PriorityQueue<Integer> pq=new PriorityQueue<>();
+        Queue<Node> q=new LinkedList<>();
+        if(root1!=null)
+        q.add(root1);
+        while(!q.isEmpty()){
+            Node node=q.remove();
+            pq.add(node.data);
+            if(node.left!=null)
+            q.add(node.left);
+            if(node.right!=null)
+            q.add(node.right);
+        }
+        if(root2!=null)
+        q.add(root2);
+        while(!q.isEmpty()){
+            Node node=q.remove();
+            pq.add(node.data);
+            if(node.left!=null)
+            q.add(node.left);
+            if(node.right!=null)
+            q.add(node.right);
+        }
+        List<Integer> res=new ArrayList<>();
+        while(!pq.isEmpty())
+        res.add(pq.poll());
+        return res;
+    }
+}
