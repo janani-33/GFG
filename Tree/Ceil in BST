@@ -1,0 +1,19 @@
+class Tree {
+    int findCeil(Node root, int key) {
+        if (root == null) 
+        return -1;
+        int res=-1;
+        Node temp=root;
+        while(temp!=null){
+            if(temp.data==key)
+            return key;
+            if(temp.data>key){
+                res=temp.data;
+                temp=temp.left;
+            }
+            else
+            temp=temp.right;
+        }
+        return res;
+    }
+}
