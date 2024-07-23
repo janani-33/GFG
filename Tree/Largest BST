@@ -1,0 +1,36 @@
+// class Node  
+// { 
+//     int data; 
+//     Node left, right; 
+//     public Node(int d)  
+//     { 
+//         data = d; 
+//         left = right = null; 
+//     } 
+// }
+class Pair{
+    int min;
+    int max;
+    int s;
+    Pair(int min,int max,int s){
+        this.min=min;
+        this.max=max;
+        this.s=s;
+    }
+}
+class Solution{
+    static int largestBst(Node root){
+        int res=compute(root).s;
+        return res;
+    }
+    static Pair compute(Node node){
+        if(node==null)
+        return new Pair(Integer.MAX_VALUE,Integer.MIN_VALUE,0);
+        Pair left=compute(node.left);
+        Pair right=compute(node.right);
+        if(left.max<node.data && right.min>node.data)
+        return new Pair(Math.min(left.min,node.data),Math.max(right.max,node.data),right.s+left.s+1);
+        else
+        return new Pair(Integer.MIN_VALUE,Integer.MAX_VALUE,Math.max(left.s,right.s));
+    }
+}
