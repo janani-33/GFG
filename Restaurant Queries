@@ -1,0 +1,29 @@
+class Solution {
+    public static long[] sumofItems(int n, int[] prices, int q, int[][] queries) {
+        long res[]=new long[q];
+        long sum=0,add=0;
+        HashMap<Long,Long> hs=new HashMap<>();
+        for(int i=0;i<n;i++){
+            sum+=prices[i];
+            hs.put((long)prices[i],hs.getOrDefault((long)prices[i],0L)+1L);
+        }
+        for(int i=0;i<q;i++){
+            if(queries[i][0]==1){
+                add+=queries[i][1];
+                sum+=((long)n*queries[i][1]);
+            }
+            else{
+                long x=queries[i][1];
+                long y=queries[i][2];
+                long count=hs.getOrDefault(x-add,-1L);
+                if(count!=-1 && y!=x){
+                    sum=sum-count*x+count*y;
+                    hs.put(y-add,hs.getOrDefault(y-add,0L)+count);
+                    hs.remove(x-add);
+                }
+            }
+            res[i]=sum;
+        }
+        return res;
+    }
+}
